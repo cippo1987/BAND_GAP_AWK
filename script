@@ -1,0 +1,14 @@
+awk 'BEGIN {}
+/   80   / {h[j] = $2; ++j}
+/   81   / {l[k] = $2; ++k}
+END { for (i = 1; i < length(l); i ++) 
+	 print l[i], h[i], l[i]-h[i] } #This line prints all the eigenvalues for band 80 and 81 (this case) 
+BEGIN {}
+{
+MIN = 100 
+for (i = 1; i < length(l); i ++) 
+if (l[i]-h[i] < MIN)
+	{MIN = l[i]-h[i]}	 
+}
+END {print MIN}
+' OUTCAR #> hocoluco.dat 
